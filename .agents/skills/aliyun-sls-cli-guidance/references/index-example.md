@@ -1,11 +1,11 @@
-# Index Configuration (create-index)
+# Index Configuration (create-index/update-index)
 
 Index configuration enables query and SQL analytics on a Logstore. You must create an index before using query syntax or SQL on logs.
 
 - **line**: Full-text index. Enables searching log content by keyword (e.g. `"someWord"` in query).
 - **keys**: Field index. Index specific log fields for filtering (e.g. `key: "value"`) and SQL. Create indexes for fields you often filter or aggregate on.
 
-At least one of `line` or `keys` must be specified when calling **create-index**.
+At least one of `line` or `keys` must be specified when calling **create-index** or **update-index**.
 
 **update-index** performs an **overwrite update**: the full index configuration you send replaces the existing one. It does not merge or patch. To change the index, get the current config (e.g. **get-index**), then send the complete desired config with **update-index**.
 

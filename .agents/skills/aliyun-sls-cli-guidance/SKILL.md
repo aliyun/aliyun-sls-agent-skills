@@ -1,5 +1,5 @@
 ---
-name: aliyun-sls-cli
+name: aliyun-sls-cli-guidance
 description: Manage Alibaba Cloud SLS (Simple Log Service) resources using aliyun-cli. Use when working with SLS projects, logstores, log queries, or when the user mentions Aliyun Log, Aliyun SLS, or log service operations.
 ---
 
@@ -110,14 +110,15 @@ aliyun sls list-project --cli-query "projects[*].name"
 
 ## Detailed Examples
 
-**Required**: Before calling an SLS API, check whether a related detailed example exists under the `refrences/` directory. If it does, **you must read that example** and follow its usage (parameters, patterns, and best practices) before constructing or executing the command.
+**Required**: Before calling an SLS API, check whether a related detailed example exists under the `references/` directory. If it does, **you must read that example** and follow its usage (parameters, patterns, and best practices) before constructing or executing the command.
 
-Reference files in `refrences/`:
+Reference files in `references/`:
 
-- **Project operations**: [refrences/project-example.md](refrences/project-example.md)
-- **Logstore operations**: [refrences/logstore-example.md](refrences/logstore-example.md)
-- **Log query operations**: [refrences/query-logs-example.md](refrences/query-logs-example.md)
-- **Index configuration**: [refrences/index-example.md](refrences/index-example.md)
+- **Project operations**: [references/project-example.md](references/project-example.md)
+- **Logstore operations**: [references/logstore-example.md](references/logstore-example.md)
+- **Log query operations**: [references/query-logs-example.md](references/query-logs-example.md)
+- **Index configuration**: [references/index-example.md](references/index-example.md)
+- **Put logs**: [references/put-logs-example.md](references/put-logs-example.md)
 
 ## Important Notes
 
@@ -137,7 +138,7 @@ If a command fails:
 1. Ensure required parameters are provided, use `--cli-dry-run` to validate syntax
 2. Check credential configuration: `aliyun configure list`
 3. Check error message for specific failure reason
-4. **Check relevant examples** – If an detailed example exists under the `refrences/` directory for the operation, compare your command with it to ensure usage and parameters match.
+4. **Check relevant examples** – If a detailed example exists under the `references/` directory for the operation, compare your command with it to ensure usage and parameters match.
 
 ## Common Parameters
 

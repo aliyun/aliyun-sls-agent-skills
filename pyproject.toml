@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aliyun-sls-agent-skills"
+version = "0.1.0"
+description = "Install Aliyun SLS Agent Skills to various AI coding tools (Claude Code, GitHub Copilot, Codex, Cursor, etc.)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Crimson Gao"}
+]
+keywords = ["sls", "aliyun", "ai", "agent-skills", "claude-code", "copilot", "codex", "cursor"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Database",
+]
+
+dependencies = [
+    "questionary>=1.10.0",
+]
+
+[project.scripts]
+sls-agent-skills = "aliyun_sls_agent_skills.main:main"
+
+[project.urls]
+Homepage = "https://github.com/aliyun/aliyun-sls-agent-skills"
+Documentation = "https://github.com/aliyun/aliyun-sls-agent-skills/tree/main/README.md"
+Repository = "https://github.com/aliyun/aliyun-sls-agent-skills"
+Issues = "https://github.com/aliyun/aliyun-sls-agent-skills/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+# Include package data (e.g. skills dir); MANIFEST.in controls what gets included
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aliyun_sls_agent_skills = ["skills/**/*"]
