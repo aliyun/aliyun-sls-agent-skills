@@ -99,7 +99,7 @@ TOOL_CONFIGS: Dict[str, InstallLocation] = {
 }
 
 INSTALLABLE_SKILLS = [
-    "aliyun-sls-cli-guidance",
+    "alibabacloud-sls-cli-guidance",
 ]
 
 
@@ -195,7 +195,7 @@ def _parse_args() -> argparse.Namespace:
         epilog="""
 Headless mode (-b, no prompts; -y = skip confirmation):
   %(prog)s -b --scope project --tool Cursor -y
-  %(prog)s -b --scope global --tool codex --skills aliyun-sls-cli-guidance
+  %(prog)s -b --scope global --tool codex --skills alibabacloud-sls-cli-guidance
 """,
     )
     parser.add_argument(
@@ -227,7 +227,7 @@ Headless mode (-b, no prompts; -y = skip confirmation):
         "--skills",
         metavar="SKILLS",
         default="",
-        help="Skills to install: empty = all, or comma-separated (e.g. aliyun-sls-cli-guidance).",
+        help="Skills to install: empty = all, or comma-separated (e.g. alibabacloud-sls-cli-guidance).",
     )
     return parser.parse_args()
 
@@ -297,7 +297,7 @@ def collect_context_interactive() -> Optional[InstallContext]:
         selected_skills = questionary.checkbox(
             "Select skills (use ↑↓ to navigate, Space to select, Enter to confirm, Ctrl+C to cancel):",
             choices=INSTALLABLE_SKILLS,
-            default="aliyun-sls-cli-guidance",
+            default="alibabacloud-sls-cli-guidance",
             instruction="(Select multiple with Space)",
             style=_NO_BG_STYLE,
         ).ask()

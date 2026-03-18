@@ -11,7 +11,7 @@ This repository provides **Aliyun SLS** Agent Skills and aims to deliver an inte
 
 SLS Agent Skills include the following:
 
-### ✅ aliyun-sls-cli-guidance
+### ✅ alibabacloud-sls-cli-guidance
 
 **Use cases:**
 
@@ -30,9 +30,9 @@ Write a log to aliyun-test-project / test with content hello: world
 Query the last two minutes of logs from aliyun-test-project / test
 ```
 
-> aliyun-sls-cli-guidance depends on an installed and configured [aliyun-cli](https://github.com/aliyun/aliyun-cli) and the SLS plugin. The skill docs include installation and usage; the agent will handle setup and configuration as needed.
+> alibabacloud-sls-cli-guidance depends on an installed and configured [aliyun-cli](https://github.com/aliyun/aliyun-cli) and the SLS plugin. The skill docs include installation and usage; the agent will handle setup and configuration as needed.
 
-[Skill doc](.agents/skills/aliyun-sls-cli-guidance/SKILL.md)
+[Skill doc](.agents/skills/alibabacloud-sls-cli-guidance/SKILL.md)
 
 ## 📦 Install Skill
 
@@ -74,8 +74,8 @@ sls-agent-skills
 # Install to Cursor, project scope, all skills
 sls-agent-skills -b --scope project --tool Cursor -y
 
-# Install to Codex, global scope, only aliyun-sls-cli-guidance
-sls-agent-skills -b --scope global --tool codex --skills aliyun-sls-cli-guidance -y
+# Install to Codex, global scope, only alibabacloud-sls-cli-guidance
+sls-agent-skills -b --scope global --tool codex --skills alibabacloud-sls-cli-guidance -y
 ```
 
 ### Copy skill directory to install location

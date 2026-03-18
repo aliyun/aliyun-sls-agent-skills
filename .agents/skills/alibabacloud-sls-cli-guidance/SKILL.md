@@ -1,5 +1,5 @@
 ---
-name: aliyun-sls-cli-guidance
+name: alibabacloud-sls-cli-guidance
 description: Manage Alibaba Cloud SLS (Simple Log Service) resources using aliyun-cli. Use when working with SLS projects, logstores, log queries, or when the user mentions Aliyun Log, Aliyun SLS, or log service operations.
 ---
 

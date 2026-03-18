@@ -10,7 +10,7 @@
 
 SLS Agent Skills 提供了如下的 skills：
 
-### ✅ aliyun-sls-cli-guidance
+### ✅ alibabacloud-sls-cli-guidance
 
 **使用场景：**
 
@@ -29,9 +29,9 @@ SLS Agent Skills 提供了如下的 skills：
 帮我查询 aliyun-test-project test 日志库最近两分钟的日志
 ```
 
-> aliyun-sls-cli-guidance 依赖已安装并配置的 [aliyun-cli](https://github.com/aliyun/aliyun-cli) 及 SLS 插件，技能文档中已包含安装与使用说明，AGENT 会自行处理安装与配置。
+> alibabacloud-sls-cli-guidance 依赖已安装并配置的 [aliyun-cli](https://github.com/aliyun/aliyun-cli) 及 SLS 插件，技能文档中已包含安装与使用说明，AGENT 会自行处理安装与配置。
 
-[文档链接](.agents/skills/aliyun-sls-cli-guidance/SKILL.md)
+[文档链接](.agents/skills/alibabacloud-sls-cli-guidance/SKILL.md)
 
 ## 📦 安装 Skill
 
