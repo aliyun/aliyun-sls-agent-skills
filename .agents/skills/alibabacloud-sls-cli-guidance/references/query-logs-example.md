@@ -98,6 +98,10 @@ Run a separate query with **select count(\*)** in the SQL part (same query left 
 Use **order by** in SQL: `order by <column> asc` or `order by <column> desc`.  
 In SQL mode, **--reverse** is ignored; order is controlled only by SQL.
 
+### Text-to-SQL (complex or failed SQL)
+
+Before writing **complex SQL**, or when a **SQL query has failed**, try **text-to-sql** to generate high-quality SQL from natural language. See [text-to-sql-example.md](text-to-sql-example.md) for the **call-ai-tools** text_to_sql usage; then pass the returned SQL into **get-logs-v2** as `--query`.
+
 ### Examples
 
 ```bash

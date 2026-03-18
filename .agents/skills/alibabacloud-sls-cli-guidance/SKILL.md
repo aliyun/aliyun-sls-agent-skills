@@ -22,11 +22,21 @@ Expected output: `aliyun-cli-sls 0.1.0 (5e6288421)` or similar
 
 ### Installation (if not installed)
 
-If the check fails, install aliyun-cli:
+If the check fails, guide the user to install aliyun-cli using one of these methods:
+
+**Option 1: Homebrew (macOS only)**
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://aliyuncli.alicdn.com/install.sh)"
+brew install aliyun-cli
 ```
+
+**Option 2: Official installer (Linux and macOS)**
+
+```bash
+sudo /bin/bash -c "$(curl -fsSL https://aliyuncli.alicdn.com/install.sh)"
+```
+
+This method requires sudo permission to install to `/usr/local/bin/aliyun`.
 
 Then install the SLS plugin:
 
@@ -117,6 +127,7 @@ Reference files in `references/`:
 - **Project operations**: [references/project-example.md](references/project-example.md)
 - **Logstore operations**: [references/logstore-example.md](references/logstore-example.md)
 - **Log query operations**: [references/query-logs-example.md](references/query-logs-example.md)
+- **Text-to-SQL (natural language to SQL)**: [references/text-to-sql-example.md](references/text-to-sql-example.md)
 - **Index configuration**: [references/index-example.md](references/index-example.md)
 - **Put logs**: [references/put-logs-example.md](references/put-logs-example.md)
 
