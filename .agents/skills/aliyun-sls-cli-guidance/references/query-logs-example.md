@@ -11,7 +11,7 @@ Use **get-logs-v2** to query logs. Two modes: **query (search)** and **SQL analy
 ### Query syntax
 
 ```
-* and "someWord" and ”key1: "value1" and (key2: "value2" or key3: "value3") not key4: "value4"
+* and "someWord" and key1: "value1" and (key2: "value2" or key3: "value3") not key4: "value4"
 ```
 
 - `*`: match all.

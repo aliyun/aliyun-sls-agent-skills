@@ -30,7 +30,7 @@ Optional filters (can be combined). If a filter is omitted, it is not applied (a
 - **`--telemetry-type`** – `None` (log types only) or `Metrics` (time-series metrics only).
 
 ```bash
-# List all logstores, including  both log types and time-series metrics, both standard and query logstores
+# List all logstores, including both log types and time-series metrics, both standard and query logstores
 aliyun sls list-log-stores --project my-project --offset 0 --size 200
 
 # By name (fuzzy), by mode, and by telemetry type

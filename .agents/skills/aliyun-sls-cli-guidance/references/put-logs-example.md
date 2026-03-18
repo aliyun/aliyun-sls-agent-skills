@@ -31,4 +31,4 @@ aliyun sls put-json-logs --project my-project --logstore my-logstore \
 ## Notes
 
 - Ensure the Logstore exists and has an index if you need to query or analyze these logs.
-- ****time**** must be in seconds (Unix epoch). For millisecond timestamps, divide by 1000 or use seconds when constructing the value.
+- `__time__` must be in seconds (Unix epoch). For millisecond timestamps, divide by 1000 or use seconds when constructing the value.
