@@ -1,4 +1,7 @@
+
 # 🧩 Project Overview
+
+English | [简体中文](README_CN.md)
 
 [Alibaba Cloud SLS (Simple Log Service)](https://help.aliyun.com/zh/sls/) is an intelligent cloud-native observability and analytics platform, providing data collection, processing, query and analysis, visualization, alerting, consumption, and delivery.
 

@@ -1,5 +1,7 @@
 # 🧩 项目概览
 
+[English](README.md) | 简体中文
+
 [阿里云 SLS（日志服务）](https://help.aliyun.com/zh/sls/) 是智能化云原生观测与分析平台，提供数据采集、加工、查询与分析、可视化、告警、消费与投递等功能。
 
 本仓库提供面向 **阿里云 SLS** 的 SLS Agent Skills，旨在提供智能化的 SLS 运维管控方案。SLS Agent Skills 面向 SLS 典型运维与开发场景设计，使 AI 助手能够基于 Aliyun CLI 规范、可靠地完成项目与 Logstore 管理、日志查询等操作。
