@@ -64,7 +64,7 @@ Below lists frequently used SLS operations. **Read the corresponding reference f
 | [logstore](references/logstore.md) | `list-log-stores` `create-log-store` `get-log-store` `update-log-store` `delete-log-store` | Manage logstores within a project |
 | [index](references/index.md) | `get-index` `create-index` `update-index` `delete-index` | Configure indexes to enable query and SQL analytics |
 | [query-logs](references/query-logs.md) | `get-logs-v2` `get-histograms` | Query and analyze logs with search or SQL |
-| [put-logs](references/put-logs.md) | `put-json-logs` | Write logs to a logstore |
+| [put-json-logs](references/put-json-logs.md) | `put-json-logs` | Write logs to a logstore |
 | [text-to-sql](references/text-to-sql.md) | `call-ai-tools` | Generate SQL from natural language via SLS Copilot |
 
 ## CLI Usage

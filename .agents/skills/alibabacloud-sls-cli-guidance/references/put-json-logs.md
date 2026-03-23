@@ -14,7 +14,7 @@ Write logs to a logstore using `put-json-logs`. Each `--logs` flag takes a JSON 
 
 ## Rules
 
-1. `__time__` is a reserved field — its value must be a **Unix timestamp in seconds**. If omitted, the server uses the receive time.
+1. `__time__` is a reserved field — its value must be a **string** of Unix timestamp in seconds (e.g. `"1715769600"`, not `1715769600`). If omitted, the server uses the receive time.
 2. The target logstore must already exist. If you need to query or analyze these logs, an index must also be configured (see [index.md](index.md)).
 
 ## Examples
@@ -23,7 +23,7 @@ Write logs to a logstore using `put-json-logs`. Each `--logs` flag takes a JSON 
 
 ```bash
 aliyun sls put-json-logs --project my-project --logstore my-logstore \
-  --logs '{"__time__":1715769600, "region":"cn-hangzhou", "content":"hello aliyun cli"}'
+  --logs '{"__time__":"1715769600", "region":"cn-hangzhou", "content":"hello aliyun cli"}'
 ```
 
 ### Multiple logs in one call
@@ -32,8 +32,8 @@ Repeat `--logs` for each log entry:
 
 ```bash
 aliyun sls put-json-logs --project my-project --logstore my-logstore \
-  --logs '{"__time__":1715769600, "region":"cn-hangzhou", "content":"log entry 1"}' \
-  --logs '{"__time__":1715769601, "region":"cn-hangzhou", "content":"log entry 2"}'
+  --logs '{"__time__":"1715769600", "region":"cn-hangzhou", "content":"log entry 1"}' \
+  --logs '{"__time__":"1715769601", "region":"cn-hangzhou", "content":"log entry 2"}'
 ```
 
 ### With topic and source
