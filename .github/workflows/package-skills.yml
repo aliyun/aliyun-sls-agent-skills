@@ -12,40 +12,16 @@ permissions:
   contents: write
 
 jobs:
-  discover:
-    runs-on: ubuntu-latest
-    outputs:
-      skills: ${{ steps.list.outputs.skills }}
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: List skills
-        id: list
-        run: |
-          skills=$(ls -d .agents/skills/*/ | xargs -I{} basename {} | jq -R -s -c 'split("\n") | map(select(. != ""))')
-          echo "skills=$skills" >> "$GITHUB_OUTPUT"
-          echo "Found skills: $skills"
-
   package:
-    needs: discover
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        skill: ${{ fromJson(needs.discover.outputs.skills) }}
     steps:
       - uses: actions/checkout@v6
 
-      - name: Package ${{ matrix.skill }}
-        run: |
-          mkdir -p dist/skills
-          cd ".agents/skills/${{ matrix.skill }}"
-          zip -r "../../../dist/skills/${{ matrix.skill }}.zip" .
-
-      - name: Upload ${{ matrix.skill }}
+      - name: Upload artifact
         uses: actions/upload-artifact@v6
         with:
-          name: ${{ matrix.skill }}
-          path: dist/skills/${{ matrix.skill }}.zip
+          name: alibabacloud-sls-cli-guidance
+          path: .agents/skills/alibabacloud-sls-cli-guidance/
           if-no-files-found: error
 
       - name: Attach to release
@@ -53,5 +29,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          cd .agents/skills/alibabacloud-sls-cli-guidance
+          zip -r "$GITHUB_WORKSPACE/alibabacloud-sls-cli-guidance.zip" .
+          cd "$GITHUB_WORKSPACE"
           gh release upload "${{ github.event.release.tag_name }}" \
-            "dist/skills/${{ matrix.skill }}.zip" --clobber
+            alibabacloud-sls-cli-guidance.zip --clobber
