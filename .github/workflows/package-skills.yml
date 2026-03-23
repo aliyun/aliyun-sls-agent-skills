@@ -1,0 +1,36 @@
+name: Package Skills
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Package skills
+        run: bash scripts/package-skills.sh dist/skills
+
+      - name: Upload skill artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: skills
+          path: dist/skills/*.zip
+          if-no-files-found: error
+
+      - name: Upload skills to release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for zip in dist/skills/*.zip; do
+            echo "Uploading $(basename "$zip") to release ${{ github.event.release.tag_name }}"
+            gh release upload "${{ github.event.release.tag_name }}" "$zip" --clobber
+          done
