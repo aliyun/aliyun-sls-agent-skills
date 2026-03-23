@@ -38,6 +38,9 @@ ENV/
 .coverage
 htmlcov/
 
+# CI agents (local-only verification skills)
+.ci/.agents
+
 # OS
 .DS_Store
 Thumbs.db
