@@ -17,7 +17,7 @@ jobs:
     outputs:
       skills: ${{ steps.list.outputs.skills }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: List skills
         id: list
@@ -33,7 +33,7 @@ jobs:
       matrix:
         skill: ${{ fromJson(needs.discover.outputs.skills) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Package ${{ matrix.skill }}
         run: |
@@ -42,7 +42,7 @@ jobs:
           zip -r "../../../dist/skills/${{ matrix.skill }}.zip" .
 
       - name: Upload ${{ matrix.skill }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.skill }}
           path: dist/skills/${{ matrix.skill }}.zip
