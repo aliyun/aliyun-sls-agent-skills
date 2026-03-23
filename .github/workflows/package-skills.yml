@@ -3,6 +3,8 @@ name: Package Skills
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   release:
     types: [published]
 
@@ -10,27 +12,46 @@ permissions:
   contents: write
 
 jobs:
-  package:
+  discover:
     runs-on: ubuntu-latest
+    outputs:
+      skills: ${{ steps.list.outputs.skills }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Package skills
-        run: bash scripts/package-skills.sh dist/skills
+      - name: List skills
+        id: list
+        run: |
+          skills=$(ls -d .agents/skills/*/ | xargs -I{} basename {} | jq -R -s -c 'split("\n") | map(select(. != ""))')
+          echo "skills=$skills" >> "$GITHUB_OUTPUT"
+          echo "Found skills: $skills"
 
-      - name: Upload skill artifacts
+  package:
+    needs: discover
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        skill: ${{ fromJson(needs.discover.outputs.skills) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Package ${{ matrix.skill }}
+        run: |
+          mkdir -p dist/skills
+          cd ".agents/skills/${{ matrix.skill }}"
+          zip -r "../../../dist/skills/${{ matrix.skill }}.zip" .
+
+      - name: Upload ${{ matrix.skill }}
         uses: actions/upload-artifact@v4
         with:
-          name: skills
-          path: dist/skills/*.zip
+          name: ${{ matrix.skill }}
+          path: dist/skills/${{ matrix.skill }}.zip
           if-no-files-found: error
 
-      - name: Upload skills to release
+      - name: Attach to release
         if: github.event_name == 'release'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          for zip in dist/skills/*.zip; do
-            echo "Uploading $(basename "$zip") to release ${{ github.event.release.tag_name }}"
-            gh release upload "${{ github.event.release.tag_name }}" "$zip" --clobber
-          done
+          gh release upload "${{ github.event.release.tag_name }}" \
+            "dist/skills/${{ matrix.skill }}.zip" --clobber
