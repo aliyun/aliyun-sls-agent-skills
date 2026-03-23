@@ -7,6 +7,8 @@ English | [简体中文](README_CN.md)
 
 This repository provides **Aliyun SLS** Agent Skills and aims to deliver an intelligent SLS operations and control solution. SLS Agent Skills are designed for typical SLS ops and development scenarios, enabling AI assistants to perform project and Logstore management, log query, and related operations in a standardized, reliable way via the Aliyun CLI.
 
+[![PyPI](https://img.shields.io/pypi/v/aliyun-sls-agent-skills.svg)](https://pypi.org/project/aliyun-sls-agent-skills/) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 ## 📁 SLS Agent Skills
 
 SLS Agent Skills include the following:
@@ -30,7 +32,12 @@ Write a log to aliyun-test-project / test with content hello: world
 Query the last two minutes of logs from aliyun-test-project / test
 ```
 
-> alibabacloud-sls-cli-guidance depends on an installed and configured [aliyun-cli](https://github.com/aliyun/aliyun-cli) and the SLS plugin. The skill docs include installation and usage; the agent will handle setup and configuration as needed.
+> The aliyun CLI and SLS plugin installation instructions are included in the skill. After installing the skill, the agent will automatically check the environment and install the required dependencies. To install manually:
+>
+> ```bash
+> sudo /bin/bash -c "$(curl -fsSL https://aliyuncli.alicdn.com/install.sh)"
+> aliyun plugin install --names sls
+> ```
 
 [Skill doc](.agents/skills/alibabacloud-sls-cli-guidance/SKILL.md)
 

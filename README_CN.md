@@ -6,6 +6,8 @@
 
 本仓库提供面向 **阿里云 SLS** 的 SLS Agent Skills，旨在提供智能化的 SLS 运维管控方案。SLS Agent Skills 面向 SLS 典型运维与开发场景设计，使 AI 助手能够基于 Aliyun CLI 规范、可靠地完成项目与 Logstore 管理、日志查询等操作。
 
+[![PyPI](https://img.shields.io/pypi/v/aliyun-sls-agent-skills.svg)](https://pypi.org/project/aliyun-sls-agent-skills/) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 ## 📁 SLS Agent Skills
 
 SLS Agent Skills 提供了如下的 skills：
@@ -29,7 +31,12 @@ SLS Agent Skills 提供了如下的 skills：
 帮我查询 aliyun-test-project test 日志库最近两分钟的日志
 ```
 
-> alibabacloud-sls-cli-guidance 依赖已安装并配置的 [aliyun-cli](https://github.com/aliyun/aliyun-cli) 及 SLS 插件，技能文档中已包含安装与使用说明，AGENT 会自行处理安装与配置。
+> aliyun CLI 和 SLS 插件的安装方法已在 Skill 中说明，安装 Skill 后，Agent 会自动检查环境并安装相应依赖。如需手动安装请使用：
+>
+> ```bash
+> sudo /bin/bash -c "$(curl -fsSL https://aliyuncli.alicdn.com/install.sh)"
+> aliyun plugin install --names sls
+> ```
 
 [文档链接](.agents/skills/alibabacloud-sls-cli-guidance/SKILL.md)
 
