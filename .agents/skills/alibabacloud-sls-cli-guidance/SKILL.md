@@ -65,6 +65,8 @@ Below lists frequently used SLS operations. **Read the corresponding reference f
 | [index](references/index.md) | `get-index` `create-index` `update-index` `delete-index` | Configure indexes to enable query and SQL analytics |
 | [query-logs](references/query-logs.md) | `get-logs-v2` `get-histograms` | Query and analyze logs with search or SQL |
 | [put-json-logs](references/put-json-logs.md) | `put-json-logs` | Write logs to a logstore |
+| [logtail-config](references/logtail-config.md) | `create-logtail-pipeline-config` `update-logtail-pipeline-config` `get-logtail-pipeline-config` `list-logtail-pipeline-config` `delete-logtail-pipeline-config` | Manage Logtail pipeline configs for log collection (file input, JSON/delimiter/regex parsing, multiline, time extraction) |
+| [machine-group](references/machine-group.md) | `create-machine-group` `update-machine-group` `get-machine-group` `list-machine-group` `delete-machine-group` `apply-config-to-machine-group` `remove-config-from-machine-group` `get-applied-configs` | Manage machine groups and apply Logtail configs to them |
 | [text-to-sql](references/text-to-sql.md) | `call-ai-tools` | Generate SQL from natural language via SLS Copilot |
 
 ## CLI Usage
@@ -110,4 +112,4 @@ aliyun sls list-project --cli-query "projects[*].name"
 2. **Obtain explicit user approval before any delete** — delete operations are irreversible.
 3. **Use `--cli-dry-run` first** for destructive operations (delete, update).
 4. **Update APIs require full parameters** — first call the corresponding **Get** API to retrieve current parameters, then include **all** meaningful parameters in the update call (including unchanged ones). Omitting parameters may reset them to defaults.
-5. **If a command fails**: check required parameters with `--cli-dry-run`, verify credentials via `aliyun configure list`, read the error message, and compare your command with the corresponding reference file.
+5. **If a command fails**: check required parameters with `--cli-dry-run`, verify credentials via `aliyun configure list`, read the error message, and compare your command with the corresponding reference file. If the sub-command is not recognized, upgrade the plugin via `aliyun plugin update sls`.

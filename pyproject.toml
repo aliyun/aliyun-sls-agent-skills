@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aliyun-sls-agent-skills"
-version = "0.2.1"
+version = "0.3.0"
 description = "Install Aliyun SLS Agent Skills to various AI coding tools (Claude Code, GitHub Copilot, Codex, Cursor, etc.)"
 readme = "README.md"
 requires-python = ">=3.10"
