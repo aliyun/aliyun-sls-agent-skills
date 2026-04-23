@@ -1,0 +1,20 @@
+{
+  "name": "aliyun-sls",
+  "version": "0.3.0",
+  "description": "Operate Alibaba Cloud Simple Log Service (SLS) from Cursor via the aliyun CLI. Manage projects, logstores, indexes, Logtail configs, machine groups, and query logs in natural language.",
+  "author": {
+    "name": "Crimson Gao"
+  },
+  "homepage": "https://github.com/aliyun/aliyun-sls-agent-skills",
+  "repository": "https://github.com/aliyun/aliyun-sls-agent-skills",
+  "keywords": [
+    "aliyun",
+    "alibabacloud",
+    "sls",
+    "log-service",
+    "observability",
+    "logs",
+    "cli"
+  ],
+  "skills": "./.agents/skills/"
+}
