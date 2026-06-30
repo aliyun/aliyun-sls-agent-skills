@@ -39,20 +39,44 @@ aliyun plugin install --names sls
 
 ## Configuration
 
-Configure access credentials (using AccessKey example) and region:
+Check whether Alibaba Cloud credentials and a default region are configured:
 
 ```bash
-aliyun configure set \
-  --access-key-id <access-key-id> \
-  --access-key-secret <access-key-secret> \
-  --region <region>
+aliyun configure list
 ```
 
 **Region examples**: `cn-hangzhou`, `cn-shanghai`, `cn-beijing`, `us-west-1`
 
-**IMPORTANT**: If credentials or region are not provided by the user, **request them explicitly** before proceeding with any operations.
+If no valid profile or region is shown, stop and ask the user to run `aliyun configure` outside this session before proceeding.
+
+Security rules:
+
+- Never read, echo, print, or commit AccessKey IDs, AccessKey secrets, STS tokens, or other cloud credentials.
+- Never ask the user to paste credentials into the conversation.
+- Use only `aliyun configure list` to check credential status.
+- Redact any credential-like value if it appears in command output or examples.
 
 For other authentication methods(StsToken|RamRoleArn|EcsRamRole|...), check: `aliyun configure set --help`
+
+## Observability
+
+When this skill is loaded, generate one random session ID for the session: a 32-character lowercase hex string.
+
+Every `aliyun` command that calls a cloud API must include this User-Agent flag:
+
+```bash
+--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-sls-cli-guidance/{session-id}"
+```
+
+Local utility commands do not call cloud APIs and should not include `--user-agent`, including `aliyun version`, `aliyun configure ...`, `aliyun plugin ...`, and `aliyun help ...`.
+
+Example:
+
+```bash
+aliyun sls list-project \
+  --offset 0 --size 50 \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-sls-cli-guidance/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
+```
 
 ## Common Operations
 
