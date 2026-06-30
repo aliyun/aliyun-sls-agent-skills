@@ -453,7 +453,7 @@ After installation and configuration:
 1. **Install plugins** for services you need (v3.3.1+ supports all published product plugins):
 
    ```bash
-   aliyun plugin install --names ecs vpc rds
+   aliyun plugin install --names sls
 
    # List all available plugins
    aliyun plugin list-remote
@@ -463,13 +463,7 @@ After installation and configuration:
 
    ```bash
    aliyun sls --help
-   aliyun fc --help
    ```
-
-3. **Read documentation**:
-   - [Command Syntax Guide](./command-syntax.md)
-   - [Global Flags Reference](./global-flags.md)
-   - [Common Scenarios](./common-scenarios.md)
 
 ## References
 
