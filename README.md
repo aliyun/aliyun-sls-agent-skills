@@ -9,36 +9,6 @@ This repository provides **Aliyun SLS** Agent Skills and aims to deliver an inte
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## SLS Agent Skills
-
-### alibabacloud-sls-cli-guidance
-
-**Use cases:**
-
-- Query and manage SLS projects, Logstores, index configuration, etc.
-- Write logs to and query logs from SLS Logstores
-- All other SLS OpenAPI capabilities, e.g. alerting, dashboards, processing jobs
-
-**Trigger:**
-
-When the user mentions Aliyun Log, SLS, logstore, or log service-related operations. **Example prompts:**
-
-```text
-List my SLS projects in the Hangzhou region
-Create a logstore named test under aliyun-test-project and create a full-text index
-Write a log to aliyun-test-project / test with content hello: world
-Query the last two minutes of logs from aliyun-test-project / test
-```
-
-> The aliyun CLI and SLS plugin installation instructions are included in the skill. After installing the skill, the agent will automatically check the environment and install the required dependencies. To install manually:
->
-> ```bash
-> sudo /bin/bash -c "$(curl -fsSL https://aliyuncli.alicdn.com/install.sh)"
-> aliyun plugin install --names sls
-> ```
-
-[Skill doc](skills/alibabacloud-sls-cli-guidance/SKILL.md)
-
 ## Install
 
 Install via [`npx skills`](https://skills.sh):
@@ -54,6 +24,49 @@ npx skills add aliyun/alibabacloud-aiops-skills \
   --skill alibabacloud-sls-query \
   -g --full-depth
 ```
+
+## Skill 使用方法
+
+### alibabacloud-sls-cli-guidance
+
+Manage Alibaba Cloud SLS (Simple Log Service) resources via `aliyun-cli`. Covers high-frequency operations including Project, Logstore, Index, log query/analysis, log ingestion, Logtail collection config, and machine groups.
+
+**Credential Configuration:**
+
+This skill relies on `aliyun-cli` to access SLS. It supports AK, OAuth, RamRole, and other authentication methods. See the official docs for configuration: <https://help.aliyun.com/zh/cli/configure-credentials>.
+
+**Usage:**
+
+Automatically triggered when the conversation mentions Aliyun Log, SLS, LogStore, Logtail, log collection, etc. Just describe your needs in natural language. Examples:
+
+Log query & analysis:
+
+```text
+Query logs with status=500 from my-app-logs/nginx-access in the past 1 hour, sorted by time descending, top 100
+Show Top 10 request_uri by 5xx error count for yesterday
+```
+
+Project management:
+
+```text
+List projects in cn-hangzhou whose names start with prod-
+Create a project named my-app-logs in cn-shanghai with description "application log archive"
+```
+
+Logstore management:
+
+```text
+Create a logstore named nginx-access under project my-app-logs with 30-day retention and 4 shards
+Change the retention of logstore nginx-access from 30 to 90 days
+```
+
+Write logs:
+
+```text
+Write a JSON log to my-app-logs/test-store: {"level":"info","msg":"hello"}
+```
+
+[Skill doc](skills/alibabacloud-sls-cli-guidance/SKILL.md)
 
 ## Contributing & Feedback
 
