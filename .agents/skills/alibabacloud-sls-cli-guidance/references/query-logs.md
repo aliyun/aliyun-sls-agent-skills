@@ -1,6 +1,28 @@
 # Log Query
 
-Use `get-logs-v2` to query logs. Two modes: **query (search)** and **SQL analytics**.
+Use the dedicated `alibabacloud-sls-query` skill for SLS log query and analysis workflows. This file is only a quick API reference for `get-logs-v2` and `get-histograms`.
+
+Delegate to `alibabacloud-sls-query` when the user asks to query logs, analyze logs, generate SQL/SPL, optimize a query, execute a query, or troubleshoot query results. If the skill is not installed, install it first:
+
+```bash
+# Global Codex install
+npx skills add aliyun/alibabacloud-aiops-skills \
+  --skill alibabacloud-sls-query \
+  --agent codex \
+  -g -y --full-depth
+```
+
+```bash
+# Project-level Codex install
+npx skills add aliyun/alibabacloud-aiops-skills \
+  --skill alibabacloud-sls-query \
+  --agent codex \
+  -y --full-depth
+```
+
+After installation, actively locate and read the installed `alibabacloud-sls-query/SKILL.md` completely, then follow that skill's workflow.
+
+`get-logs-v2` supports two modes: **query (search)** and **SQL analytics**.
 
 ## Key parameters
 
@@ -52,7 +74,7 @@ Format: `<query_syntax> | SELECT ... FROM log WHERE ... ORDER BY ... LIMIT ...`
 - Right of `|`: standard SQL; table is always `log` (can be omitted when no join log).
 - `LIMIT offset, count` for pagination; `LIMIT all` to return everything (use only for small result sets).
 
-Before writing complex SQL, or when a SQL query has failed, try **text-to-sql** to generate SQL from natural language. See [text-to-sql.md](text-to-sql.md).
+For complex SQL, natural-language query generation, SPL, scan mode, or query failures, delegate to `alibabacloud-sls-query` and follow its `SKILL.md`.
 
 ## Examples
 

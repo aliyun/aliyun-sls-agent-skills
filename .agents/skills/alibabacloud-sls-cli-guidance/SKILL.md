@@ -5,7 +5,7 @@ description: Manage Alibaba Cloud SLS (Simple Log Service) resources using aliyu
 
 # Aliyun SLS CLI
 
-Command-line interface for managing Alibaba Cloud Simple Log Service (SLS) resources including projects, logstores, and log queries.
+Command-line interface for managing Alibaba Cloud Simple Log Service (SLS) resources including projects, logstores, Logtail configs, machine groups, and other non-query operations.
 
 ## Prerequisites
 
@@ -58,16 +58,48 @@ For other authentication methods(StsToken|RamRoleArn|EcsRamRole|...), check: `al
 
 Below lists frequently used SLS operations. **Read the corresponding reference file first** before executing any of them.
 
+## Delegate Log Query and Analysis
+
+For SLS log query and analysis tasks, use the dedicated `alibabacloud-sls-query` skill instead of handling the workflow in this skill.
+
+Delegate when the user asks to:
+
+- query logs, analyze logs, or troubleshoot query results
+- write, explain, optimize, or execute SLS index search, SQL, SQL scan, or SPL
+- translate natural language into an SLS query, SQL, or SPL statement
+- debug `get-logs-v2`, query syntax, index/statistics prerequisites, or `ProjectNotExist` during query work
+
+If `alibabacloud-sls-query` is not installed, install it with `npx skills` before doing the query work.
+
+Global Codex install:
+
+```bash
+npx skills add aliyun/alibabacloud-aiops-skills \
+  --skill alibabacloud-sls-query \
+  --agent codex \
+  -g -y --full-depth
+```
+
+Project-level Codex install:
+
+```bash
+npx skills add aliyun/alibabacloud-aiops-skills \
+  --skill alibabacloud-sls-query \
+  --agent codex \
+  -y --full-depth
+```
+
+After installation, actively locate and read the installed `alibabacloud-sls-query/SKILL.md` completely, then follow that skill's workflow for the query task. Keep this skill for project, logstore, index management, Logtail config, machine group, shard, put-logs, and other SLS CLI operations outside query analysis.
+
 | Reference | Related commands | Description |
 |-----------|------------------|-------------|
 | [project](references/project.md) | `list-project` `create-project` `get-project` `update-project` `delete-project` | Manage SLS projects (create, list, update, delete) |
 | [logstore](references/logstore.md) | `list-log-stores` `create-log-store` `get-log-store` `update-log-store` `delete-log-store` | Manage logstores within a project |
 | [index](references/index.md) | `get-index` `create-index` `update-index` `delete-index` | Configure indexes to enable query and SQL analytics |
-| [query-logs](references/query-logs.md) | `get-logs-v2` `get-histograms` | Query and analyze logs with search or SQL |
+| [query-logs](references/query-logs.md) | `get-logs-v2` `get-histograms` | Query API quick reference; delegate query workflows to `alibabacloud-sls-query` |
 | [put-json-logs](references/put-json-logs.md) | `put-json-logs` | Write logs to a logstore |
 | [logtail-config](references/logtail-config.md) | `create-logtail-pipeline-config` `update-logtail-pipeline-config` `get-logtail-pipeline-config` `list-logtail-pipeline-config` `delete-logtail-pipeline-config` | Manage Logtail pipeline configs for log collection (file input, JSON/delimiter/regex parsing, multiline, time extraction) |
 | [machine-group](references/machine-group.md) | `create-machine-group` `update-machine-group` `get-machine-group` `list-machine-group` `delete-machine-group` `apply-config-to-machine-group` `remove-config-from-machine-group` `get-applied-configs` | Manage machine groups and apply Logtail configs to them |
-| [text-to-sql](references/text-to-sql.md) | `call-ai-tools` | Generate SQL from natural language via SLS Copilot |
 
 ## CLI Usage
 
