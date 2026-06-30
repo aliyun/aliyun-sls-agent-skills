@@ -117,7 +117,7 @@ After installation, actively locate and read the installed `alibabacloud-sls-que
 
 | Reference | Related commands | Description |
 |-----------|------------------|-------------|
-| [project](references/project.md) | `list-project` `create-project` `get-project` `update-project` `delete-project` | Manage SLS projects (create, list, update, delete) |
+| [project](references/project.md) | `list-project` `create-project` `get-project` `update-project` `delete-project` | Manage SLS projects, including cross-region discovery |
 | [logstore](references/logstore.md) | `list-log-stores` `create-log-store` `get-log-store` `update-log-store` `delete-log-store` | Manage logstores within a project |
 | [index](references/index.md) | `get-index` `create-index` `update-index` `delete-index` | Configure indexes to enable query and SQL analytics |
 | [query-logs](references/query-logs.md) | `get-logs-v2` `get-histograms` | Query API quick reference; delegate query workflows to `alibabacloud-sls-query` |
@@ -168,4 +168,4 @@ aliyun sls list-project --cli-query "projects[*].name"
 2. **Obtain explicit user approval before any delete** — delete operations are irreversible.
 3. **Use `--cli-dry-run` first** for destructive operations (delete, update).
 4. **Update APIs require full parameters** — first call the corresponding **Get** API to retrieve current parameters, then include **all** meaningful parameters in the update call (including unchanged ones). Omitting parameters may reset them to defaults.
-5. **If a command fails**: check required parameters with `--cli-dry-run`, verify credentials via `aliyun configure list`, read the error message, and compare your command with the corresponding reference file. If the sub-command is not recognized, upgrade the plugin via `aliyun plugin update sls`.
+5. **If a command fails**: check required parameters with `--cli-dry-run`, verify credentials via `aliyun configure list`, read the error message, and compare your command with the corresponding reference file. If the sub-command is not recognized, upgrade the plugin via `aliyun plugin update sls`. If the error is `ProjectNotExist`, use cross-region discovery in [project](references/project.md) to locate the project.
