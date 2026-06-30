@@ -1,4 +1,5 @@
-# 🧩 项目概览
+
+# 阿里云 SLS Agent Skills
 
 [English](README.md) | 简体中文
 
@@ -6,13 +7,11 @@
 
 本仓库提供面向 **阿里云 SLS** 的 SLS Agent Skills，旨在提供智能化的 SLS 运维管控方案。SLS Agent Skills 面向 SLS 典型运维与开发场景设计，使 AI 助手能够基于 Aliyun CLI 规范、可靠地完成项目与 Logstore 管理、日志查询等操作。
 
-[![PyPI](https://img.shields.io/pypi/v/aliyun-sls-agent-skills.svg)](https://pypi.org/project/aliyun-sls-agent-skills/) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## 📁 SLS Agent Skills
+## SLS Agent Skills
 
-SLS Agent Skills 提供了如下的 skills：
-
-### ✅ alibabacloud-sls-cli-guidance
+### alibabacloud-sls-cli-guidance
 
 **使用场景：**
 
@@ -38,59 +37,25 @@ SLS Agent Skills 提供了如下的 skills：
 > aliyun plugin install --names sls
 > ```
 
-[文档链接](.agents/skills/alibabacloud-sls-cli-guidance/SKILL.md)
+[文档链接](skills/alibabacloud-sls-cli-guidance/SKILL.md)
 
-## 📦 安装 Skill
+## 安装
 
-您可以通过以下任意一种方式安装 Skill：
-
-### 通过 sls-agent-skills 助手安装（推荐）
-
-sls-agent-skills 助手可以简化安装步骤，这需要您的环境中安装了 pip。
-**支持安装到以下软件：**
-
-- Claude Code
-- OpenClaw
-- Cursor
-- Codex
-- OpenCode
-- GitHub Copilot
-- Qoder
-- Trae
-- Iflow
-- Kiro
-
-安装 sls-agent-skills 助手：
+通过 [`npx skills`](https://skills.sh) 安装：
 
 ```bash
-pip install aliyun-sls-agent-skills
+npx skills add alibabacloud-sls-cli-guidance -g
 ```
 
-使用**交互模式**安装 Skill：
+同时推荐安装 **alibabacloud-sls-query**，提供更强大的 SLS 日志查询能力：
 
 ```bash
-# 交互模式下会依次选择目标工具、安装范围（项目 / 全局）及要安装的 skills。
-sls-agent-skills
+npx skills add aliyun/alibabacloud-aiops-skills \
+  --skill alibabacloud-sls-query \
+  -g --full-depth
 ```
 
-### 复制 Skill 目录到安装目录
-
-您可以手动将 [.agents/skills](.agents/skills) 下的技能目录复制到目标工具的安装目录，完成技能的安装。各工具对应的目录如下（项目目录相对于项目根，全局目录相对于用户主目录 `~`）：
-
-| 工具 | 项目安装目录 | 全局安装目录 |
-|------|----------------|----------------|
-| Claude Code | `.claude/skills` | `~/.claude/skills` |
-| OpenClaw | `skills` | `~/.openclaw/skills` |
-| Cursor | `.cursor/skills` | `~/.cursor/skills` |
-| Codex | `.agents/skills` | `~/.agents/skills` |
-| OpenCode | `.opencode/skills` | `~/.config/opencode/skills` |
-| GitHub Copilot | `.github/skills` | `~/.copilot/skills` |
-| Qoder | `.qoder/skills` | `~/.qoder/skills` |
-| Trae | `.trae/skills` | `~/.trae/skills` |
-| Iflow | `.iflow/skills` | `~/.iflow/skills` |
-| Kiro | `.kiro/skills` | `~/.kiro/skills` |
-
-## 🛠️ 参与与反馈
+## 参与与反馈
 
 欢迎通过 Issue 或 Pull Request 参与贡献。
 

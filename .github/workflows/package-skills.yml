@@ -21,7 +21,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: alibabacloud-sls-cli-guidance
-          path: .agents/skills/
+          path: skills/
           if-no-files-found: error
 
       - name: Attach to release
@@ -29,7 +29,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd .agents/skills
+          cd skills
           zip -r "$GITHUB_WORKSPACE/alibabacloud-sls-cli-guidance.zip" alibabacloud-sls-cli-guidance/
           cd "$GITHUB_WORKSPACE"
           gh release upload "${{ github.event.release.tag_name }}" \
