@@ -44,7 +44,7 @@ Query the last two minutes of logs from aliyun-test-project / test
 Install via [`npx skills`](https://skills.sh):
 
 ```bash
-npx skills add alibabacloud-sls-cli-guidance -g
+npx skills add aliyun/aliyun-sls-agent-skills --skill alibabacloud-sls-cli-guidance -g
 ```
 
 Also recommended — install **alibabacloud-sls-query** for advanced SLS log query capabilities:

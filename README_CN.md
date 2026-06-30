@@ -44,7 +44,7 @@
 通过 [`npx skills`](https://skills.sh) 安装：
 
 ```bash
-npx skills add alibabacloud-sls-cli-guidance -g
+npx skills add aliyun/aliyun-sls-agent-skills --skill alibabacloud-sls-cli-guidance -g
 ```
 
 同时推荐安装 **alibabacloud-sls-query**，提供更强大的 SLS 日志查询能力：
