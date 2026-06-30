@@ -20,43 +20,28 @@ Expected output: `aliyun-cli-sls 0.1.0 (5e6288421)` or similar
 
 ### Installation (if not installed)
 
-If the check fails, install aliyun-cli using one of these methods:
-
-**Option 1: Homebrew (macOS only)**
+If the check fails, follow [references/cli-installation-guide.md](references/cli-installation-guide.md) to install aliyun-cli, then install the sls plugin:
 
 ```bash
-brew install aliyun-cli
 aliyun plugin install --names sls
 ```
 
-**Option 2: Official installer (Linux and macOS)**
+### Update Plugins
 
 ```bash
-# This method requires sudo permission to install to `/usr/local/bin/aliyun`.
-sudo /bin/bash -c "$(curl -fsSL https://aliyuncli.alicdn.com/install.sh)"
-aliyun plugin install --names sls
+aliyun plugin update sls
 ```
 
-## Configuration
+### Check Alibaba Cloud credentials configured
 
-Check whether Alibaba Cloud credentials and a default region are configured:
+Run `aliyun configure list` to check if credentials configured.
+If no valid profile is shown, **STOP** here and ask the user to run `aliyun configure` outside of this session.
 
-```bash
-aliyun configure list
-```
+**Security rules:**
 
-**Region examples**: `cn-hangzhou`, `cn-shanghai`, `cn-beijing`, `us-west-1`
-
-If no valid profile or region is shown, stop and ask the user to run `aliyun configure` outside this session before proceeding.
-
-Security rules:
-
-- Never read, echo, print, or commit AccessKey IDs, AccessKey secrets, STS tokens, or other cloud credentials.
-- Never ask the user to paste credentials into the conversation.
-- Use only `aliyun configure list` to check credential status.
-- Redact any credential-like value if it appears in command output or examples.
-
-For other authentication methods(StsToken|RamRoleArn|EcsRamRole|...), check: `aliyun configure set --help`
+- **NEVER** read, echo, or print AK/SK values
+- **NEVER** ask the user to paste AK/SK into the conversation
+- **ONLY** use `aliyun configure list` to check credential status
 
 ## Observability
 
@@ -78,49 +63,28 @@ aliyun sls list-project \
   --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-sls-cli-guidance/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
 ```
 
-## Common Operations
+## Log Query and Analysis
 
-Below lists frequently used SLS operations. **Read the corresponding reference file first** before executing any of them.
+Use the `alibabacloud-sls-query` skill for all log query and analysis tasks. It covers SLS query & analysis syntax (index search, SQL, SPL), scenario examples, troubleshooting, and end-to-end query workflows — it is the required skill for querying SLS logs.
 
-## Delegate Log Query and Analysis
-
-For SLS log query and analysis tasks, use the dedicated `alibabacloud-sls-query` skill instead of handling the workflow in this skill.
-
-Delegate when the user asks to:
+Use `alibabacloud-sls-query` when the user asks to:
 
 - query logs, analyze logs, or troubleshoot query results
 - write, explain, optimize, or execute SLS index search, SQL, SQL scan, or SPL
 - translate natural language into an SLS query, SQL, or SPL statement
-- debug `get-logs-v2`, query syntax, index/statistics prerequisites, or `ProjectNotExist` during query work
+- debug `get-logs-v2`, query syntax, index/statistics prerequisites
 
-If `alibabacloud-sls-query` is not installed, install it with `npx skills` before doing the query work.
+If the skill is already available, use it directly. If not, see [alibabacloud-sls-query-installation](references/alibabacloud-sls-query-installation.md) to install and load it.
 
-Global Codex install:
+## Common Operations
 
-```bash
-npx skills add aliyun/alibabacloud-aiops-skills \
-  --skill alibabacloud-sls-query \
-  --agent codex \
-  -g -y --full-depth
-```
-
-Project-level Codex install:
-
-```bash
-npx skills add aliyun/alibabacloud-aiops-skills \
-  --skill alibabacloud-sls-query \
-  --agent codex \
-  -y --full-depth
-```
-
-After installation, actively locate and read the installed `alibabacloud-sls-query/SKILL.md` completely, then follow that skill's workflow for the query task. Keep this skill for project, logstore, index management, Logtail config, machine group, shard, put-logs, and other SLS CLI operations outside query analysis.
+For project, logstore, index management, Logtail config, machine group, put-logs, and other non-query SLS operations, stay in this skill and refer to the reference docs below. **Read the corresponding reference file first** before executing any of them.
 
 | Reference | Related commands | Description |
 |-----------|------------------|-------------|
-| [project](references/project.md) | `list-project` `create-project` `get-project` `update-project` `delete-project` | Manage SLS projects, including cross-region discovery |
+| [project](references/project.md) | `list-project` `create-project` `get-project` `update-project` `delete-project` | Manage SLS projects |
 | [logstore](references/logstore.md) | `list-log-stores` `create-log-store` `get-log-store` `update-log-store` `delete-log-store` | Manage logstores within a project |
 | [index](references/index.md) | `get-index` `create-index` `update-index` `delete-index` | Configure indexes to enable query and SQL analytics |
-| [query-logs](references/query-logs.md) | `get-logs-v2` `get-histograms` | Query API quick reference; delegate query workflows to `alibabacloud-sls-query` |
 | [put-json-logs](references/put-json-logs.md) | `put-json-logs` | Write logs to a logstore |
 | [logtail-config](references/logtail-config.md) | `create-logtail-pipeline-config` `update-logtail-pipeline-config` `get-logtail-pipeline-config` `list-logtail-pipeline-config` `delete-logtail-pipeline-config` | Manage Logtail pipeline configs for log collection (file input, JSON/delimiter/regex parsing, multiline, time extraction) |
 | [machine-group](references/machine-group.md) | `create-machine-group` `update-machine-group` `get-machine-group` `list-machine-group` `delete-machine-group` `apply-config-to-machine-group` `remove-config-from-machine-group` `get-applied-configs` | Manage machine groups and apply Logtail configs to them |
@@ -157,6 +121,15 @@ aliyun sls list-project --cli-query "projects[*].name"
 - `--region <region>`: Override region
 - `--help`: Show command help
 
+## Troubleshooting
+
+When a command fails or returns unexpected results, read [references/troubleshooting.md](references/troubleshooting.md) for the full checklist, including:
+
+- CLI and plugin version issues
+- Credentials and region configuration
+- Common errors (`ProjectNotExist`, `Unauthorized`, `InvalidParameter`, etc.)
+- Cross-region project discovery (for `ProjectNotExist`)
+
 ## Rules
 
 1. **Do not use deprecated APIs** — use the current replacement so behavior stays supported and predictable.
@@ -168,4 +141,5 @@ aliyun sls list-project --cli-query "projects[*].name"
 2. **Obtain explicit user approval before any delete** — delete operations are irreversible.
 3. **Use `--cli-dry-run` first** for destructive operations (delete, update).
 4. **Update APIs require full parameters** — first call the corresponding **Get** API to retrieve current parameters, then include **all** meaningful parameters in the update call (including unchanged ones). Omitting parameters may reset them to defaults.
-5. **If a command fails**: check required parameters with `--cli-dry-run`, verify credentials via `aliyun configure list`, read the error message, and compare your command with the corresponding reference file. If the sub-command is not recognized, upgrade the plugin via `aliyun plugin update sls`. If the error is `ProjectNotExist`, use cross-region discovery in [project](references/project.md) to locate the project.
+5. **If a command fails**: follow [references/troubleshooting.md](references/troubleshooting.md).
+6. Use skill `alibabacloud-sls-query` for log query and analysis.
